@@ -17,7 +17,7 @@ export class TitleBlock extends Block {
   }
 
   toHTML() {
-    const {tag, styles} = this.options;
+    const {tag = 'h1', styles} = this.options;
     return wrap('row',
       wrap('col', `<${tag}>${this.value}</${tag}>`, styles),
       styles
@@ -31,8 +31,8 @@ export class ImageBlock extends Block {
   }
 
   toHTML() {
-    const {alt, styles, imageStyles} = this.options
-    const html = `<img src="${this.value}" alt="${alt}" style="${imageStyles}"/>`
+    const {alt, styles, imageStyles} = this.options;
+    const html = `<img src="${this.value}" alt="${alt}" style="${imageStyles}"/>`;
     return wrap('row', html, styles)
   }
 }
@@ -58,7 +58,7 @@ export class TextColumnsBlock extends Block {
   toHTML() {
     let html = this.value.map(item => {
       return wrap('col', `<p>${item}</p>`, this.options.styles)
-    })
+    });
     return wrap('row', html.join(''), this.options.styles)
   }
 }
